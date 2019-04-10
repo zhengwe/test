@@ -1,9 +1,10 @@
-FROM golang:1.8.0-alpine
-
-ADD . /go/src/app
-
-WORKDIR /go/src/app
-
-RUN GOOS=linux GOARCH=386 go build -v -o /go/src/app/jenkins-app
-
-CMD ["./jenkins-app"]
+FROM nginx 
+MAINTAINER dkey
+ENV RUN_USER nginx 
+ENV RUN_GROUP nginx 
+ENV DATA_DIR /data/web
+ENV LOG_DIR /data/log/nginx
+RUN mkdir /data/log/nginx -p 
+RUN chown nginx.nginx -R /data/log/nginx
+EXPOSE 80
+ENTRYPOINT nginx -g "daemon off;"
