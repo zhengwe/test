@@ -18,7 +18,7 @@ node('jnlp-slave') {
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
+        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
             sh "docker login -u ${dockerhubUser} -p ${dockerhubPassword}"
             sh "docker push zhengwei919/jenkins-demo:${build_tag}"
         }
