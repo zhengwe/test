@@ -15,7 +15,6 @@ node('jnlp-slave') {
     stage('Build') {
         echo "3.Build Docker Image Stage"
         sh "docker build -t zhengwei919/jenkins-demo:${build_tag} ."
-        sh "docker tag zhengwei919/jenkins-demo:${build_tag}"
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
